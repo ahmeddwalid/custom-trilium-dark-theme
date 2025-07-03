@@ -1,0 +1,800 @@
+/*!
+ * Custom Trilium Dark Theme
+ * Version: 1.0.0
+ */
+
+/* === CORE THEME VARIABLES === */
+:root {
+    /* Theme Configuration */
+    --theme-style: dark;
+
+    /* Base Colors */
+    --main-background-color: #1E1E1E;
+    --main-text-color: #e8e8e8;
+    --main-border-color: #333333;
+    --accented-background-color: #222;
+    --more-accented-background-color: transparent;
+
+    /* Interactive Elements */
+    --button-background-color: transparent;
+    --button-border-color: #333;
+    --button-text-color: currentColor;
+    --button-border-radius: 3px;
+    --button-disabled-background-color: transparent;
+    --button-disabled-text-color: #999;
+
+    /* Primary Elements */
+    --primary-button-background-color: #0E639C50;
+    --primary-button-text-color: #ccc;
+    --primary-button-border-color: transparent;
+
+    /* Text Colors */
+    --muted-text-color: #c5c5c5;
+    --input-text-color: #ccc;
+    --link-color: #9cdcfe;
+
+    /* Hover & Active States */
+    --hover-item-text-color: #ccc;
+    --hover-item-background-color: transparent;
+    --hover-item-border-color: #333;
+    --active-item-text-color: #ccc;
+    --active-item-background-color: #4682B430;
+    --active-item-border-color: transparent;
+
+    /* UI Components */
+    --menu-text-color: #ccc;
+    --menu-background-color: #222;
+    --modal-background-color: #333;
+    --modal-backdrop-color: #444;
+    --tooltip-background-color: #333;
+    --scrollbar-border-color: #333;
+
+    /* Panes */
+    --left-pane-background-color: #252526;
+    --left-pane-text-color: #AAAAAA;
+    --launcher-pane-background-color: #333333;
+    --launcher-pane-text-color: rgba(255, 255, 255, 0.4);
+
+    /* Tabs */
+    --active-tab-background-color: rgb(30, 30, 30);
+    --active-tab-hover-background-color: rgb(30, 30, 30);
+    --active-tab-text-color: rgb(255, 255, 255);
+    --inactive-tab-background-color: rgb(51, 51, 51);
+    --inactive-tab-hover-background-color: rgb(51, 51, 51);
+    --inactive-tab-text-color: rgba(255, 255, 255, 0.5);
+
+    /* Tree Colors */
+    --tree-color-1: #f4a6a670;
+    --tree-color-2: #99d0df70;
+    --tree-color-3: #b4afdf70;
+    --tree-color-4: #abd58b70;
+    --tree-color-5: #f3d27570;
+    --tree-color-6: #bccdf170;
+
+    /* Header Colors */
+    --h1-border-color: rgba(0, 0, 0, 1);
+    --h2-background-color: rgb(105 154 187 / 50%);
+    --h3-background-color: rgb(112 175 164 / 40%);
+    --h4-background-color: rgb(215 187 162 / 40%);
+    --h5-background-color: rgb(190 186 206 / 40%);
+    --h6-background-color: rgb(197 197 197 / 40%);
+    --header-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    --header-border-radius: 6px;
+    --header-padding: 5px 0 2px 10px;
+
+    /* Editor Colors */
+    --ck-color-table-focused-cell-background: #1E1E1E;
+    --ck-color-focus-border: #bfbfbf;
+    --ck-color-code-block-label-background: #333;
+    --mermaid-theme: dark;
+
+    /* Syntax Highlighting */
+    --syntax-comment: #7c7c7c;
+    --syntax-string: #ce9178;
+    --syntax-number: #b5cea8;
+    --syntax-keyword: #569cd6;
+    --syntax-function: #dcdcaa;
+    --syntax-variable: #9cdcfe;
+    --syntax-built-in: #4aa8b7;
+    --syntax-addition: #bd3c16;
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.2s ease;
+    --transition-slow: 0.3s ease;
+}
+
+/* === BROWSER COMPATIBILITY === */
+body ::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+/* === EDITOR INTEGRATIONS === */
+body .CodeMirror {
+    filter: invert(88%) hue-rotate(180deg);
+}
+
+div.note-book-content.type-canvas > div.rendered-note-content > svg {
+    filter: invert(88%) hue-rotate(180deg);
+}
+
+.excalidraw.theme--dark {
+    --theme-filter: invert(80%) hue-rotate(180deg) !important;
+}
+
+div#launcher-pane .global-menu-button {
+    filter: invert(0.5);
+}
+
+body div.CodeMirror-vscrollbar::-webkit-scrollbar-thumb {
+    border-radius: 5px !important;
+    background: #ddd !important;
+    border-color: #ccc;
+}
+
+/* === TREE STYLING === */
+/* Base tree node styling */
+.tree li[role='treeitem'] {
+    --tree-border-color: transparent;
+    --tree-hover-bg: transparent;
+    --tree-active-bg: transparent;
+    border-left: 3px solid var(--tree-border-color);
+    transition: all var(--transition-fast);
+}
+
+/* Tree node color cycling system */
+.tree li.fancytree-lastsib ul li[role='treeitem']:nth-of-type(6n) {
+    --tree-border-color: var(--tree-color-1);
+    --tree-hover-bg: #f4a6a607;
+    --tree-active-bg: #f4a6a610;
+}
+
+.tree li.fancytree-lastsib ul li[role='treeitem']:nth-of-type(6n+1) {
+    --tree-border-color: var(--tree-color-2);
+    --tree-hover-bg: #99d0df07;
+    --tree-active-bg: #99d0df10;
+}
+
+.tree li.fancytree-lastsib ul li[role='treeitem']:nth-of-type(6n+2) {
+    --tree-border-color: var(--tree-color-3);
+    --tree-hover-bg: #b4afdf07;
+    --tree-active-bg: #b4afdf10;
+}
+
+.tree li.fancytree-lastsib ul li[role='treeitem']:nth-of-type(6n+3) {
+    --tree-border-color: var(--tree-color-4);
+    --tree-hover-bg: #abd58b07;
+    --tree-active-bg: #abd58b10;
+}
+
+.tree li.fancytree-lastsib ul li[role='treeitem']:nth-of-type(6n+4) {
+    --tree-border-color: var(--tree-color-5);
+    --tree-hover-bg: #f3d27507;
+    --tree-active-bg: #f3d27510;
+}
+
+.tree li.fancytree-lastsib ul li[role='treeitem']:nth-of-type(6n+5) {
+    --tree-border-color: var(--tree-color-6);
+    --tree-hover-bg: #bccdf107;
+    --tree-active-bg: #bccdf110;
+}
+
+/* Apply the color system to all tree states */
+.tree li[role='treeitem'] {
+    border-left-color: var(--tree-border-color);
+}
+
+.tree li[role='treeitem']:hover {
+    background-color: var(--tree-hover-bg) !important;
+}
+
+.tree li[role='treeitem'] > span.fancytree-node:hover {
+    background-color: var(--tree-hover-bg) !important;
+}
+
+.tree li[role='treeitem'] > span.fancytree-node.fancytree-active {
+    background-color: var(--tree-active-bg) !important;
+}
+
+/* === TREE ENHANCEMENTS === */
+.fancytree-node {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    border-radius: 0 !important;
+}
+
+span.fancytree-node.fancytree-active {
+    border-radius: 0 !important;
+    border: 0 !important;
+}
+
+span.fancytree-node:hover {
+    border: 0 !important;
+    transform: translateX(1px);
+}
+
+span.fancytree-node {
+    border: 0 !important;
+}
+
+span:not(.fancytree-active) span.fancytree-title {
+    font-weight: 500 !important;
+}
+
+span.fancytree-active .fancytree-title {
+    font-weight: 600 !important;
+}
+
+/* Fixed tree node icons - using proper Unicode characters */
+span.fancytree-node:not(.fancytree-folder) .fancytree-expander::before {
+    content: "📄" !important;
+    visibility: visible !important;
+    color: var(--left-pane-text-color) !important;
+    opacity: 0.3;
+    font-size: 12px;
+}
+
+/* Alternative using CSS entities for better compatibility */
+span.fancytree-node:not(.fancytree-folder):not(.fancytree-has-children) .fancytree-expander::before {
+    content: "•" !important;
+    visibility: visible !important;
+    color: var(--left-pane-text-color) !important;
+    opacity: 0.3;
+    font-size: 8px;
+}
+
+ul.fancytree-container li {
+    contain: initial;
+}
+
+/* === LAUNCHER PANE === */
+div#launcher-pane.component {
+    width: 50px !important;
+    min-width: 50px !important;
+    max-width: 50px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 2px !important;
+    padding: 4px !important;
+    box-sizing: border-box !important;
+}
+
+#launcher-pane .launcher-button {
+padding: 8px !important;
+width: 100% !important;
+display: flex !important;
+justify-content: center !important;
+align-items: center !important;
+}
+
+#launcher-container div.dropdown.right-dropdown-widget.dropright.component > button {
+padding: 8px !important;
+width: 100% !important;
+display: flex !important;
+justify-content: center !important;
+}
+
+/* === GLOBAL MENU === */
+.global-menu {
+    width: auto !important;
+}
+
+div.dropdown.global-menu.dropright.component > .icon-action {
+    border: 0;
+    padding: 8px !important;
+}
+
+.dropdown, .dropleft, .dropright, .dropup {
+    position: relative;
+}
+
+/* === SYNC STATUS === */
+.sync-status {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+.sync-status .sync-status-icon {
+    padding: 8px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.sync-status .sync-status-icon span {
+    padding: 0 !important;
+}
+
+/* === SYNTAX HIGHLIGHTING === */
+/* Enhanced syntax highlighting for better readability */
+.hljs-comment,
+.hljs-quote {
+    color: var(--syntax-comment);
+    font-style: italic;
+}
+
+.hljs-string,
+.hljs-template-string,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-addition,
+.hljs-attribute,
+.hljs-literal,
+.hljs-section,
+.hljs-title,
+.hljs-type {
+    color: var(--syntax-string);
+}
+
+.hljs-number,
+.hljs-meta {
+    color: var(--syntax-number);
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-name,
+.hljs-tag {
+    color: var(--syntax-keyword);
+}
+
+.hljs-function,
+.hljs-title.function {
+    color: var(--syntax-function);
+}
+
+.hljs-variable,
+.hljs-property {
+    color: var(--syntax-variable);
+}
+
+div.note-detail.component .hljs-built_in {
+    color: var(--syntax-built-in);
+}
+
+/* === CODE STYLING === */
+div.note-detail.component .ck-content code {
+    background-color: var(--more-accented-background-color);
+    font-size: 100% !important;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+}
+
+.ck-content pre {
+    border: 1px solid var(--main-border-color) !important;
+    border-radius: 5px !important;
+    background-color: var(--accented-background-color);
+    padding: 0.8em;
+    margin: 0.5rem 0;
+    overflow-x: auto;
+}
+
+.ck.ck-editor__editable pre[data-language]::after {
+    opacity: 0.5;
+}
+
+/* === HEADER STYLING === */
+/* H1 with left border design */
+div.component.note-split.type-text h1 {
+    padding-left: 0.4em;
+    border-left: 9px solid var(--h1-border-color);
+    border-bottom: 1px solid var(--h1-border-color);
+    margin-top: 0.3rem !important;
+    margin-bottom: 0.15rem !important;
+}
+
+/* H2-H6 with colored backgrounds */
+div.component.note-split.type-text h2:not(div.note-list-widget h2) {
+    background: var(--h2-background-color);
+    border-radius: var(--header-border-radius);
+    padding: var(--header-padding);
+    text-shadow: var(--header-shadow);
+    margin-top: 0.3rem !important;
+    margin-bottom: 0.15rem !important;
+}
+
+div.component.note-split.type-text h3:not(div.note-list-widget h3) {
+    background: var(--h3-background-color);
+    border-radius: var(--header-border-radius);
+    padding: 4px 0 2px 10px;
+    text-shadow: var(--header-shadow);
+    margin-top: 0.3rem !important;
+    margin-bottom: 0.15rem !important;
+}
+
+div.component.note-split.type-text h4:not(div.note-list-widget h4) {
+    background: var(--h4-background-color);
+    border-radius: var(--header-border-radius);
+    padding: 3px 0 2px 10px;
+    text-shadow: var(--header-shadow);
+    margin-top: 0.3rem !important;
+    margin-bottom: 0.15rem !important;
+}
+
+div.component.note-split.type-text h5:not(.note-book-header):not(div.note-list-widget h5) {
+    background: var(--h5-background-color);
+    border-radius: var(--header-border-radius);
+    padding: 2px 0 2px 10px;
+    text-shadow: var(--header-shadow);
+    margin-top: 0.3rem !important;
+    margin-bottom: 0.15rem !important;
+}
+
+div.component.note-split.type-text h6:not(div.note-list-widget h6) {
+    background: var(--h6-background-color);
+    border-radius: var(--header-border-radius);
+    padding: 1px 0 2px 10px;
+    text-shadow: var(--header-shadow);
+    margin-top: 0.3rem !important;
+    margin-bottom: 0.15rem !important;
+}
+
+/* === TABLE OF CONTENTS === */
+div.toc-widget span.toc > ol > li { color: var(--h2-background-color); }
+div.toc-widget span.toc > ol > ol > li { color: var(--h3-background-color); }
+div.toc-widget span.toc > ol > ol > ol > li { color: var(--h4-background-color); }
+div.toc-widget span.toc > ol > ol > ol > ol > li { color: var(--h5-background-color); }
+div.toc-widget span.toc > ol > ol > ol > ol > ol > li { color: var(--h6-background-color); }
+
+div.toc-widget .toc ol {
+    padding-left: 15px;
+}
+
+/* === UI COMPONENTS === */
+/* Shadows and borders */
+div#rest-pane.component div.tab-row-widget.component {
+    box-shadow: 0px 1px #111;
+}
+
+div.quick-search.input-group.input-group-sm.component {
+    box-shadow: 0px 1px #111;
+}
+
+div.note-book-card.block-link.expanded {
+    box-shadow: 1px 1px 1px 0px #111;
+}
+
+div.tooltip-inner {
+    box-shadow: 0px 0px 0px 0px #000 !important;
+}
+
+div.modal.mx-auto.component {
+    background-color: #00000085 !important;
+}
+
+/* === FORM ELEMENTS === */
+.form-control {
+    border: 1px solid var(--main-border-color) !important;
+    transition: border-color var(--transition-fast);
+}
+
+.form-control:focus {
+    border-color: var(--link-color) !important;
+    box-shadow: 0 0 0 2px rgba(156, 220, 254, 0.2);
+}
+
+.input-group-text {
+    border: 1px solid var(--main-border-color) !important;
+}
+
+/* === ACCESSIBILITY === */
+/* Enhanced focus indicators */
+:focus-visible {
+    outline: 2px solid var(--link-color) !important;
+    outline-offset: 2px;
+}
+
+.fancytree-node:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--link-color) !important;
+    outline-offset: 2px;
+}
+
+/* === SELECTION === */
+::selection {
+    background-color: rgba(156, 220, 254, 0.3) !important;
+    color: inherit;
+}
+
+.tree ::selection {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* === SCROLLBARS === */
+::-webkit-scrollbar-thumb {
+    background-color: #333 !important;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #444 !important;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--main-background-color) !important;
+}
+
+/* === TRANSITIONS === */
+/* Add smooth transitions to interactive elements */
+.fancytree-node,
+button,
+.note-tab-wrapper,
+.form-control,
+input,
+textarea {
+    transition: all var(--transition-fast);
+}
+
+/* === CONTENT STYLING === */
+/* Typography improvements */
+body,
+span.fancytree-title {
+    font-family: var(--detail-font-family) !important;
+}
+
+input.note-title {
+    font-family: var(--detail-font-family) !important;
+    font-weight: bold;
+}
+
+.note-detail {
+    line-height: 1.4;
+}
+
+/* Paragraph and list styling */
+div.note-detail p {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+    text-align: justify;
+    text-justify: distribute;
+}
+
+dl, ol, ul {
+    padding-left: 2em;
+}
+
+div.note-detail ul > li,
+div.note-detail ol > li {
+    text-align: justify;
+    text-justify: distribute;
+    margin-bottom: 0.5rem;
+}
+
+/* === BLOCKQUOTES === */
+.ck-content blockquote {
+    font-style: initial !important;
+    color: #708faf !important;
+    border-left: 5px solid var(--main-border-color) !important;
+    background: rgba(102, 128, 153, 0.1) !important;
+    margin: 1.5rem !important;
+    padding: 1rem !important;
+    border-radius: 4px;
+}
+
+blockquote > p {
+    margin-bottom: 0 !important;
+    text-indent: 0 !important;
+}
+
+/* === TABLES === */
+.ck-content .table {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.ck-content .table table {
+    border: 1px solid var(--main-border-color) !important;
+    border-collapse: collapse;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ck-content .table table td,
+.ck-content .table table th {
+    border: 1px solid var(--main-border-color) !important;
+    padding: 8px 12px;
+}
+
+.ck-content .table table th {
+    background-color: rgba(255, 255, 255, 0.05);
+    font-weight: 600;
+}
+
+.ck-content .table table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* === IMAGES === */
+.ck-content figure.image {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px dashed var(--main-border-color);
+    border-radius: 4px;
+}
+
+.ck-content p > span.image-inline {
+    vertical-align: middle;
+    border: 1px dashed var(--main-border-color);
+    border-radius: 4px;
+}
+
+/* === MATH === */
+span.katex * {
+    font-family: KaTeX_Main !important;
+    font: KaTeX_Main, Times New Roman, serif !important;
+}
+
+.katex-display {
+    margin: 0.5rem 0;
+}
+
+p > span.ck-math-tex {
+    text-indent: 0;
+}
+
+/* === TOAST NOTIFICATIONS === */
+div#toast-container {
+    right: 20px !important;
+    bottom: 20px !important;
+    top: auto !important;
+    width: auto !important;
+}
+
+/* === SWITCHES === */
+.switch-widget span.slider.checked {
+    background-color: var(--primary-button-background-color) !important;
+}
+
+/* === HORIZONTAL RULES === */
+div.note-detail div.ck-horizontal-line.ck-widget {
+    margin-top: 1rem !important;
+}
+
+.ck-content hr {
+    margin-bottom: 1rem !important;
+    border-color: var(--main-border-color);
+}
+
+/* === SEARCH === */
+div.quick-search.input-group.input-group-sm.component {
+    align-content: center;
+}
+
+/* === TABS === */
+div#rest-pane > div.component {
+    height: 4rem !important;
+    margin-bottom: 1px !important;
+}
+
+.note-new-tab {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 19px !important;
+    transition: all var(--transition-fast);
+}
+
+.note-new-tab:hover {
+    transform: scale(1.05);
+}
+
+div#rest-pane div.tab-row-widget div.tab-row-widget-container div.note-tab div.note-tab-wrapper {
+    padding: 1rem 1rem 1rem 1rem !important;
+    height: 2rem !important;
+}
+
+div.note-tab-wrapper div.note-tab-close.bx {
+    padding-bottom: 1rem;
+}
+
+div#rest-pane div.tab-row-widget div.tab-row-widget-container div.note-tab div.note-tab-wrapper > div:hover {
+    background: none;
+}
+
+div#rest-pane div.tab-row-widget div.tab-row-widget-container div.note-tab[active] .note-tab-wrapper div.note-tab-title::before {
+    content: "★ ";
+    margin-right: 5px;
+}
+
+/* === TITLE BAR === */
+.title-bar-buttons {
+    font-size: 12px;
+}
+
+#center-pane .title-row .note-icon-widget button {
+display: flex;
+margin: 0;
+}
+
+.bx-dock-right::before {
+    vertical-align: middle;
+}
+
+div.note-title-widget.component > input.note-title {
+    margin-top: 2px;
+}
+
+div.note-icon-widget > button.bx.bx-code.note-icon {
+    margin-top: 2px !important;
+}
+
+/* === PROPERTIES PANEL === */
+.note-properties-widget {
+    padding: 0 !important;
+}
+
+.note-icon-widget.dropdown.component {
+    padding-top: 1.5px !important;
+}
+
+.basic-properties-widget > * {
+    margin-top: 0 !important;
+}
+
+div.attribute-list {
+    margin-top: 0 !important;
+}
+
+.basic-properties-widget {
+    padding: 0 12px !important;
+}
+
+.component {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.inherited-attributes-container {
+    padding: 0 12px !important;
+}
+
+.add-new-attribute-button,
+.save-attributes-button {
+    bottom: 0 !important;
+}
+
+/* === SHARED INFO === */
+div.shared-info-widget.alert.alert-warning.component {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* === RIBBON BUTTONS === */
+span.button-widget.icon-action.bx.component.bx-history,
+.ribbon-button-container .icon-action {
+    padding-top: 5px !important;
+}
+
+/* === LIST FORMATTING === */
+.note-detail-editable-text *:not(figure,.include-note):first-child span.ck-list-bogus-paragraph {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+span.ck-list-bogus-paragraph {
+    margin-bottom: 0.5rem !important;
+}
+
+div.note-detail p span.bx {
+    display: inline;
+}
+
+/* === PRINT STYLES === */
+@media print {
+    :root {
+        --main-background-color: white;
+        --main-text-color: black;
+        --main-border-color: #ccc;
+    }
+
+    .tree li[role='treeitem'] {
+        border-left: 1px solid #ccc !important;
+    }
+
+    .fancytree-node:hover {
+        transform: none !important;
+    }
+}
